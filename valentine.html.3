@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>Valentine Special</title>
+
+<style>
+body {
+  background: #ffe6eb;
+  font-family: Arial;
+  text-align: center;
+  margin-top: 60px;
+  overflow: hidden;
+}
+
+.card {
+  background: white;
+  width: 360px;
+  padding: 20px;
+  margin: auto;
+  border-radius: 15px;
+  box-shadow: 0 0 15px pink;
+  position: relative;
+  z-index: 2;
+}
+
+h1 { color: #e6005c; }
+
+button {
+  padding: 10px 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff4d88;
+  color: white;
+}
+
+#no {
+  background: #999;
+  color: white;
+  position: absolute;
+}
+
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: fly 4s linear forwards;
+}
+
+@keyframes fly {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Will you be my Valentine? 💖</h1>
+
+  <button id="yes" onclick="love()">Yes</button>
+  <button id="no" onmouseover="runAway()">No</button>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+let tries = 0;
+
+function love() {
+  document.getElementById("msg").innerHTML =
+  "Yay! You just made my day 💖🥰";
+
+  for (let i = 0; i < 100; i++) {
+    createHeart();
+  }
+}
+
+function runAway() {
+  tries++;
+
+  var btn = document.getElementById("no");
+
+  var x = Math.random() * 250;
+  var y = Math.random() * 250;
+
+  btn.style.left = x + "px";
+  btn.style.top = y + "px";
+
+  if (tries == 5) {
+    document.getElementById("msg").innerHTML =
+    "Stop lying to yourself 😭 Just press YES!";
+  }
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 25 + 15 + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 4000);
+}
+</script>
+
+</body>
+</html>
